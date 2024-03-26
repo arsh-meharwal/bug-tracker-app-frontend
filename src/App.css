@@ -1,16 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -28,11 +22,312 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Vertical navbar Styles */
+.vertical-navbar nav {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 14%; /* Adjust the width as needed */
+  background: linear-gradient(to bottom, var(--orange), var(--orange-light));
+  box-shadow: 8px 6px 12px rgb(106, 109, 110);
+}
+
+.vertical-navbar ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  width: 17vw;
+}
+
+.vertical-navbar .non-active {
+  margin-left: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-bottom: 2%;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-decoration: none;
+}
+.vertical-navbar .active {
+  margin-left: 15%;
+  margin-right: 8%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-bottom: 2%;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-decoration: none;
+}
+.non-active:hover {
+  margin-left: 15%;
+  margin-right: 8%;
+  font-size: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: rgb(109, 109, 114);
+}
+.active {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: rgb(109, 109, 114);
+}
+
+/* ---------------------------Horizontal navbar Styles------------------------------ */
+
+.horizontal-navbar {
+  /* overflow: hidden; */
+  position: fixed;
+  top: 0;
+  left: 14%; /* Match the width of the vertical navbar */
+  width: 87vw; /* Adjust for the space taken by vertical navbar */
+  height: 50px; /* Adjust the height as needed */
+  background: linear-gradient(to right, var(--orange), var(--orange-light));
+  box-shadow: 6px 6px 12px rgb(106, 109, 110);
+}
+/* Search box on Horizontal bar styles*/
+.nav-search {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  padding: 0.5vw;
+  margin-right: 2vw;
+}
+
+/* .nav-search input[type="text"] {
+  padding: 8px;
+  margin-right: -2px;
+  width: 200px;
+  background-color: transparent;
+  border-bottom: 1px solid #282c34;
+}
+.nav-search input::placeholder {
+  color: rgb(0, 0, 0);
+}
+
+.nav-search input:focus {
+  outline: none !important;
+  border-top: none;
+  border-bottom: 1.5px solid black;
+} */
+
+.nav-search button {
+  padding: 0px 7px;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  height: 1rem;
+}
+/* Search box on Horizontal bar styles */
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxx Horizontal navbar Styles xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+/* --------------Small screen Hamburger styles(display is none for big screen)-------------- */
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  padding: 2px;
+}
+
+/* Toggling Hamburger */
+.horizontal-navbar input[type="checkbox"] {
+  display: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* xxxxxxxxxxxx Small screen Hamburger styles(display is none for big screen) xxxxxxxxxxxxxxxx */
+
+/* ------------Small screen Navbar menu styles(display is none for big screen)------------ */
+.nav-menu {
+  display: none;
+  list-style-type: none;
+}
+
+.nav-menu li {
+  margin-right: 20px;
+}
+
+.nav-menu a {
+  font-size: 16px;
+}
+/* xxxxxxxxxxxx Small screen Navbar menu styles(display is none for big screen) xxxxxxxxxxxx */
+
+/* Child Content area */
+
+.content {
+  margin-left: 14%; /* Ensure content is not hidden under vertical navbar */
+  z-index: 0;
+  min-width: 600px;
+}
+
+/* ----------------------------------- Cards Classes------------------------------------------- */
+
+.card-conatiner {
+  overflow: hidden;
+  z-index: -1;
+}
+.card-heading {
+  position: relative;
+  border: 1px solid rgb(185, 184, 184);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: -35px;
+  margin-left: 2.5%;
+  /* margin-right: 2.5%; */
+  height: 3rem;
+  width: 95%;
+  background: linear-gradient(to right, var(--orange), var(--orange-light));
+  border: 1px solid #282c34;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-heading-text {
+  color: #fff;
+}
+.double-column-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 20px; /* Gap between columns */
+  border: 1px solid rgb(185, 184, 184);
+  padding-top: 2.5rem;
+  border-radius: 10px;
+}
+
+.double-column-container-element {
+  border-bottom: 1px solid #ccc; /* Border for each column */
+  padding: 10px;
+}
+.double-column-container-element:last-child:not(:nth-last-child(2)),
+.double-column-container-element:nth-last-child(2):last-child {
+  border-bottom: none;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Cards Classes xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+/*--------------------- Media query for responsive design -----------------------*/
+
+@media (max-width: 800px) {
+  .vertical-navbar {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .horizontal-navbar {
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    width: 100vw;
+    height: fit-content;
   }
+  .nav-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    background-color: var(--orange);
+    padding: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu li {
+    margin: 10px 0;
+  }
+
+  .hamburger {
+    display: flex;
+    margin-left: 15px;
+    margin-top: 40%;
+  }
+  .nav-search {
+    margin-right: 0vw;
+    padding: 2vh;
+    width: 90vw;
+  }
+  .nav-search input[type="text"] {
+    width: 40%;
+    height: 18%;
+    padding: 15px;
+    margin-right: 5px;
+  }
+
+  /* Show/hide nav menu when hamburger is clicked */
+  #toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  #toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  #toggle:checked ~ .nav-menu {
+    display: flex;
+  }
+
+  .content {
+    position: relative;
+    margin-left: 0vw;
+    margin-top: 9vh;
+    padding: 20px;
+    z-index: 1;
+  }
+}
+
+/*xxxxxxxxxxxxxxxxxxxxxx Media query for responsive design xxxxxxxxxxxxxxxxxxxxxxxxx*/
+
+.timeline-start {
+  position: relative;
+}
+
+.timeline-start:hover .hidden-text-left {
+  opacity: 1;
+}
+
+.hidden-text-left {
+  position: absolute;
+  top: 0;
+  right: 3%;
+  opacity: 0;
+  background-color: white;
+  padding: 8px;
+  transition: opacity 0.2s ease-in-out;
+}
+.hidden-text-right {
+  position: absolute;
+  top: 0;
+  left: 3%;
+  opacity: 0;
+  background-color: white;
+  padding: 8px;
+  transition: opacity 0.2s ease-in-out;
 }
