@@ -1,7 +1,7 @@
 export function createUser(userData) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("http://localhost:8081/users/signup", {
+      const response = await fetch("/users/signup", {
         method: "POST",
         body: JSON.stringify(userData),
         headers: { "content-type": "application/json" },
@@ -22,7 +22,7 @@ export function createUser(userData) {
 export function checkGuestAdmin() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("http://localhost:8081/users/guestadmin", {
+      const response = await fetch("/users/guestadmin", {
         method: "POST",
         headers: { "content-type": "application/json" },
       });
@@ -42,7 +42,7 @@ export function checkGuestAdmin() {
 export function checkUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("http://localhost:8081/users/login", {
+      const response = await fetch("/users/login", {
         method: "POST",
         body: JSON.stringify(loginInfo),
         headers: { "content-type": "application/json" },
@@ -79,7 +79,7 @@ export async function getAllUsers(paginate, query, sort, classification) {
   console.log(queryString);
 
   try {
-    const response = await fetch("http://localhost:8081/users?" + queryString);
+    const response = await fetch("/users?" + queryString);
     const data = await response.json();
     const totalItems = await response.headers.get("X-Total-Count");
     return { data, totalItems };
@@ -90,7 +90,7 @@ export async function getAllUsers(paginate, query, sort, classification) {
 
 export async function updateUser(userData) {
   try {
-    const response = await fetch(`http://localhost:8081/users/${userData.id}`, {
+    const response = await fetch(`/users/${userData.id}`, {
       method: "PATCH",
       body: JSON.stringify(userData),
       headers: { "Content-Type": "application/json" },
@@ -109,7 +109,7 @@ export async function updateUser(userData) {
 }
 export async function resetPass(data) {
   try {
-    const response = await fetch(`http://localhost:8081/users/reset`, {
+    const response = await fetch(`/users/reset`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
@@ -129,7 +129,7 @@ export async function resetPass(data) {
 }
 export async function logout() {
   try {
-    const response = await fetch(`http://localhost:8081/users/logout`, {
+    const response = await fetch(`/users/logout`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });

@@ -14,7 +14,7 @@ export async function getTickets(paginate, query, sort) {
     queryString += `${key}=${paginate[key]}&`;
   }
 
-  const response = await fetch("http://localhost:8081/tickets?" + queryString);
+  const response = await fetch("/tickets?" + queryString);
   const data = await response.json();
   const totalItems = await response.headers.get("X-Total-Count");
 
@@ -26,7 +26,7 @@ export async function getTickets(paginate, query, sort) {
 
 export function createTicket(ticketData) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8081/tickets", {
+    const response = await fetch("/tickets", {
       method: "POST",
       body: JSON.stringify(ticketData),
       headers: { "content-type": "application/json" },
@@ -40,7 +40,7 @@ export function createTicket(ticketData) {
 
 export async function deleteAllTicket() {
   try {
-    const response = await fetch(`http://localhost:8081/tickets/delete`, {
+    const response = await fetch(`/tickets/delete`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
@@ -56,7 +56,7 @@ export async function deleteAllTicket() {
 }
 export async function deleteTicket(id) {
   try {
-    const response = await fetch(`http://localhost:8081/tickets/delete/${id}`, {
+    const response = await fetch(`/tickets/delete/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
@@ -72,14 +72,11 @@ export async function deleteTicket(id) {
 }
 export async function updateTicket(ticketData) {
   try {
-    const response = await fetch(
-      `http://localhost:8081/tickets/${ticketData.id}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(ticketData),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const response = await fetch(`/tickets/${ticketData.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(ticketData),
+      headers: { "Content-Type": "application/json" },
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -92,7 +89,7 @@ export async function updateTicket(ticketData) {
 }
 
 export async function findTicketById(id) {
-  const response = await fetch(`http://localhost:8081/tickets/${id}`);
+  const response = await fetch(`/tickets/${id}`);
   const data = await response.json();
   return data;
 }

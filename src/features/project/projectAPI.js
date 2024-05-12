@@ -14,7 +14,7 @@ export async function getProjects(paginate, query, sort) {
     queryString += `${key}=${paginate[key]}&`;
   }
 
-  const response = await fetch("http://localhost:8081/project?" + queryString);
+  const response = await fetch("/project?" + queryString);
   const data = await response.json();
   const totalItems = await response.headers.get("X-Total-Count");
 
@@ -26,7 +26,7 @@ export async function getProjects(paginate, query, sort) {
 
 export function createProject(projectData) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8081/project", {
+    const response = await fetch("/project", {
       method: "POST",
       body: JSON.stringify(projectData),
       headers: { "content-type": "application/json" },
@@ -39,7 +39,7 @@ export function createProject(projectData) {
 
 export async function updateProject(data) {
   try {
-    const response = await fetch(`http://localhost:8081/project/${data.id}`, {
+    const response = await fetch(`/project/${data.id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
@@ -55,7 +55,7 @@ export async function updateProject(data) {
 }
 
 export async function findProjectById(id) {
-  const response = await fetch(`http://localhost:8081/project/${id}`);
+  const response = await fetch(`/project/${id}`);
   const data = await response.json();
   return data;
 }
