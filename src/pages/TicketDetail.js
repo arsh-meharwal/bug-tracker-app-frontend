@@ -13,11 +13,11 @@ function TicketDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   let params = useParams();
+  console.log(params.id);
 
   const statusField = ["In Progress", "Completed"];
 
   const loggedInUser = useSelector(selectLoggedInUser);
-  console.log(loggedInUser);
 
   function getIndianDateTime() {
     const options = {
@@ -38,6 +38,7 @@ function TicketDetail() {
     try {
       setLoading(true);
       const data = await updateTicket(Ttdata);
+
       if (data.message === "Success") {
         setLoading(false);
       }
@@ -49,6 +50,7 @@ function TicketDetail() {
   const fetchTicketById = async (id) => {
     try {
       const response = await findTicketById(id);
+      console.log(response);
       setData(response);
       findTeamMembers();
     } catch (error) {

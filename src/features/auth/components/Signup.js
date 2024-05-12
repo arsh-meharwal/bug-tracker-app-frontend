@@ -20,16 +20,20 @@ export default function Signup() {
   return (
     <>
       {user && <Navigate to="/" replace={true}></Navigate>}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-600">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create a New Account
-          </h2>
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-4 lg:px-8 bg-gray-600">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm min-w-full flex flex-col items-center justify-center">
+          <div class="h-24 w-24 rounded-full overflow-hidden  bg-gray-200">
+            <img
+              src="/Logo1.png"
+              alt="Your Image"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div>
+            <h2 className="mt-10 text-center text-3xl font-semibold leading-9 tracking-tight text-orange-500">
+              Create a New Account
+            </h2>
+          </div>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -43,7 +47,7 @@ export default function Signup() {
                   last_name: data.last_name,
                   email: data.email,
                   password: data.password,
-                  projects: [null],
+                  projects: null,
                   classification: "1",
                   role: "Team Member",
                 })
@@ -56,7 +60,7 @@ export default function Signup() {
                 <div>
                   <label
                     htmlFor="firstName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     First Name
                   </label>
@@ -82,7 +86,7 @@ export default function Signup() {
                 <div>
                   <label
                     htmlFor="lastName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6 text-white"
                   >
                     Last Name
                   </label>
@@ -106,7 +110,7 @@ export default function Signup() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white"
                 >
                   Email address
                 </label>
@@ -134,14 +138,14 @@ export default function Signup() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white"
                 >
                   Password
                 </label>
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-orange-400 hover:text-indigo-500"
                   >
                     Forgot password?
                   </a>
@@ -173,7 +177,7 @@ export default function Signup() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-medium leading-6 text-white"
                 >
                   Confirm Password
                 </label>
@@ -200,18 +204,18 @@ export default function Signup() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-orange-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign Up
               </button>
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
+          <p className="mt-10 text-center text-sm text-white">
             Already a Member?{" "}
             <Link
               to="/login"
-              className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              className="font-semibold leading-6 text-orange-500 hover:text-indigo-500"
             >
               Log In
             </Link>

@@ -53,7 +53,10 @@ export default function Project() {
   let totalPages = Math.ceil(totalItems / 7);
 
   return (
-    <div style={{ minWidth: "800px" }} className="bg-gray-600 py-96 lg:py-2">
+    <div
+      style={{ minWidth: "800px" }}
+      className="bg-gray-600 py-96 lg:py-2 h-auto min-h-screen"
+    >
       <div className="lg:py-16 pt-24 pb-96 lg:px-4 ">
         <div className="lg:pb-2 pb-20">
           <Link to="/createproject">

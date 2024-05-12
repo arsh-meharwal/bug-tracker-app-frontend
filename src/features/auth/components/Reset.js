@@ -4,27 +4,19 @@ import { selectError, selectLoggedInUser } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
 import { checkUserAsync } from "../authSlice";
 import { useForm } from "react-hook-form";
+import { resetPass } from "../authAPI";
 
-export default function Login() {
-  const dispatch = useDispatch();
-  const error = useSelector(selectError);
-  const user = useSelector(selectLoggedInUser);
+export default function Reset() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  function handleGuest() {
-    console.log("guest");
-    dispatch(
-      checkUserAsync({ email: "bugadmin@gmail.com", password: "Qwerty12" })
-    );
-  }
+  const [success, setSuccess] = useState(false);
+  const [err, setErr] = useState(false);
 
   return (
     <>
-      {user && <Navigate to="/" replace={true}></Navigate>}
       <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-4 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm min-w-full flex flex-col items-center justify-center">
           <div class="h-24 w-24 rounded-full overflow-hidden  bg-gray-200">
@@ -36,7 +28,7 @@ export default function Login() {
           </div>
           <div>
             <h2 className="mt-10 text-center text-3xl font-semibold leading-9 tracking-tight text-orange-500">
-              Welcome to Bug Tracker
+              Reset Password
             </h2>
           </div>
         </div>
@@ -44,10 +36,11 @@ export default function Login() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             noValidate
-            onSubmit={handleSubmit((data) => {
-              dispatch(
-                checkUserAsync({ email: data.email, password: data.password })
-              );
+            onSubmit={handleSubmit(async (data) => {
+              const res = await resetPass(data);
+              if (res.message === "password successfully reset") {
+                setSuccess(true);
+              } else setErr(true);
             })}
             className="space-y-6"
             action="#"
@@ -59,7 +52,7 @@ export default function Login() {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-300"
                 >
-                  Username
+                  Registered Username
                 </label>
               </div>
               <div className="mt-2">
@@ -87,18 +80,9 @@ export default function Login() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-300"
                 >
-                  Password
+                  New Password
                 </label>
-                <div className="text-sm">
-                  <Link to={"/reset"}>
-                    <a
-                      href="#"
-                      className="font-semibold text-orange-400 hover:text-indigo-500"
-                    >
-                      Forgot password?
-                    </a>
-                  </Link>
-                </div>
+                <div className="text-sm"></div>
               </div>
               <div className="mt-2">
                 <input
@@ -113,7 +97,6 @@ export default function Login() {
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
-              {error && <p className="text-red-500">{error.message}</p>}
             </div>
 
             <div className="flex flex-row gap-4">
@@ -121,18 +104,22 @@ export default function Login() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-orange-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Log in
+                Authorize
               </button>
             </div>
+            {success && !err && (
+              <>
+                <p className="text-red-500">
+                  Password Reset Success! Kindly Login{" "}
+                </p>
+              </>
+            )}
+            {!success && err && (
+              <>
+                <p className="text-red-500">Password Reset Failed</p>
+              </>
+            )}
           </form>
-          <div className="pt-2">
-            <button
-              onClick={(e) => handleGuest(e)}
-              className="flex w-full justify-center rounded-md bg-orange-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Log in as Guest Admin
-            </button>
-          </div>
 
           <p className="mt-10 text-center text-sm text-white">
             Not a member?{" "}

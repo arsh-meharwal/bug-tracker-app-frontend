@@ -32,14 +32,17 @@ function ManageUsers() {
   const fetchdata = async (paginate, classification) => {
     try {
       const response = await getAllUsers(paginate, query, classification);
+
       const dta = response.data;
       const users = dta.filter(
         (user) =>
           Number(user.classification) < Number(loggedInUser.classification)
       );
+
       setUserData(users);
       setTotalUsers(response.totalItems);
       const data = loggedInUser.projects;
+      console.log(data);
       setProjectData(data);
     } catch (error) {
       setError(error.message);
@@ -130,8 +133,9 @@ function ManageUsers() {
     return <div>Failed to fetch users</div>;
   }
   let totalPages = Math.ceil(totalUsers / 7);
+  console.log(userData);
   return (
-    <div className="flex flex-col md:flex-row lg:flex-row lg:py-16 py-72 min-w-96">
+    <div className="flex flex-col md:flex-row lg:flex-row lg:py-16 py-72 min-w-96 min-h-screen">
       <div className="lg:w-2/6 md:w-2/6 lg:pb-2 pb-20">
         <div className="card-container sm:m-5">
           <div className="card-heading flex flex-col min-h-16 ">
@@ -162,19 +166,20 @@ function ManageUsers() {
                     className="w-5/6 border px-2 rounded-lg "
                     name="username"
                   >
-                    {userData.map((user, index) => (
-                      <option
-                        key={index}
-                        value={`${user.id}`}
-                        className="text-sm"
-                        onClick={() => {
-                          console.log(user.first_name);
-                        }}
-                      >
-                        {`${user.first_name}  ${user.last_name}`}
-                        {` - (${user.role})`}
-                      </option>
-                    ))}
+                    {userData &&
+                      userData.map((user, index) => (
+                        <option
+                          key={index}
+                          value={`${user.id}`}
+                          className="text-sm"
+                          onClick={() => {
+                            console.log(user.first_name);
+                          }}
+                        >
+                          {`${user.first_name}  ${user.last_name}`}
+                          {` - (${user.role})`}
+                        </option>
+                      ))}
                   </select>
                 </div>
               </div>
@@ -209,13 +214,14 @@ function ManageUsers() {
                   <option value="" disabled selected>
                     Assign Project
                   </option>
-                  {projectData.map((project, index) => {
-                    return (
-                      <option key={index} value={project.id}>
-                        {project.name}
-                      </option>
-                    );
-                  })}
+                  {projectData &&
+                    projectData.map((project, index) => {
+                      return (
+                        <option key={index} value={project.id}>
+                          {project.name}
+                        </option>
+                      );
+                    })}
                 </select>
               </div>
 

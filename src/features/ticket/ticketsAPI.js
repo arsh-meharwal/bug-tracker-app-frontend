@@ -38,6 +38,38 @@ export function createTicket(ticketData) {
   });
 }
 
+export async function deleteAllTicket() {
+  try {
+    const response = await fetch(`http://localhost:8081/tickets/delete`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const res = await response.json();
+    return res;
+  } catch (error) {
+    console.error("Error deleting Tickets:", error);
+    throw error; // Rethrow the error to handle it at the calling site
+  }
+}
+export async function deleteTicket(id) {
+  try {
+    const response = await fetch(`http://localhost:8081/tickets/delete/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const res = await response.json();
+    return res;
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error; // Rethrow the error to handle it at the calling site
+  }
+}
 export async function updateTicket(ticketData) {
   try {
     const response = await fetch(

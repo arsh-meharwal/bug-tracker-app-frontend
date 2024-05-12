@@ -1,21 +1,27 @@
 import React from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { selectLoggedInUser } from "../auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import { selectLoggedInUser, signOutAsync } from "../auth/authSlice";
+import { logout } from "../auth/authAPI";
 
 const CustomNavbar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch();
   const loggedInUser = useSelector(selectLoggedInUser);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
+  const handleSignout = async () => {
+    dispatch(signOutAsync());
+  };
   return (
     <div>
+      {!loggedInUser && <Navigate to={"/login"} replace={true}></Navigate>}
       <div className="vertical-navbar">
-        <nav>
+        <nav className="pt-16">
           <div className="flex flex-col">
             <div
               className="relative flex justify-center align-center top-0 mb-20"
@@ -289,6 +295,9 @@ const CustomNavbar = ({ children }) => {
                   </Link>
                 </ul>
               )}
+              <div className="pt-12">
+                <button onClick={() => handleSignout()}>Sign Out</button>
+              </div>
             </div>
           </div>
         </nav>
@@ -357,8 +366,9 @@ const CustomNavbar = ({ children }) => {
             </ul>
           )}
         </div>
-        <div className="flex px-10 items-center font-sans lg:py-2">
-          <span className="font-base text-white text-xl">{`Welcome: ${loggedInUser.first_name} ${loggedInUser.last_name}`}</span>
+        <div className="flex lg:px-10 px-4 items-center lg:gap-80 sm:gap-28 font-sans lg:py-2">
+          <div className="font-base text-white lg:text-xl text-base">{`Welcome: ${loggedInUser.first_name} ${loggedInUser.last_name}`}</div>
+          <div className=" text-sm text-white">BugTracker v.1</div>
         </div>
       </div>
       <div className="content bg-gray-600 mt-6 lg:mt-0">{children}</div>
